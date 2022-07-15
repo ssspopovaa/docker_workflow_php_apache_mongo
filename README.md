@@ -11,3 +11,4 @@ Created as example for sbd.local project
     - host = "mongo"
     - username	= ""
     - password	= ""
+6. In "mongo/docker-assets/mongo/data" you can put databases for further importing from inside "mongo docker container".
