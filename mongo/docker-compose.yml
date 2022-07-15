@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    mongo:
+        container_name: slr_mongo
+        image: mongo:3.6
+        environment:
+            - MONGO_INITDB_DATABASE=slr
+        volumes:
+            - ./docker-assets/mongo/data:/home/mongo
+        ports:
+            - "10017:27017"
+    
