@@ -2,14 +2,14 @@ version: "3.2"
 services:
     php:
         build: './php/'
-        container_name: sbd_php
+        container_name: sbd_71_php
         volumes:
             - ./src/:/var/www/html/
         external_links:
             - mongo_default
     apache:
         build: './apache/'
-        container_name: sbd_apache
+        container_name: sbd_71_apache
         depends_on:
             - php
         ports:
