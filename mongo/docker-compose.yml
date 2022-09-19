@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-    mongo_4_0:
+    mongo:
         container_name: slr_mongo_4_0
         image: mongo:4.0
         environment:
