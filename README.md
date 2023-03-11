@@ -1,7 +1,7 @@
 # docker_workflow_php_apache_mongo
 Docker workflow
 
-Created as example for sbd.local project
+Created as example for sbd.local project:
 
 1. The mongo folder is a separate project, and it runs separately from its own folder (this container is started first).
    -- all servers use 4.0 mongodb version.
