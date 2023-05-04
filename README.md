@@ -13,3 +13,27 @@ Created as example for sbd.local project:
     - username	= ""
     - password	= ""
 6. In "mongo/docker-assets/mongo/data" folder you can put databases for further importing from inside "mongo docker container".
+
+If your project uses css and/or js code in a compressed form, for example "js/vue.min.gz.js"
+add to apache.conf file to <VirtualHost> the following section: 
+
+    <IfModule mod_headers.c>
+    # Serve gzip compressed CSS and JS files if they exist
+        # and the client accepts gzip.
+        RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+        RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+        RewriteRule "^(.*)\.(css|js)"         "$1\.$2\.gz" [QSA]
+
+        # Serve correct content types, and prevent mod_deflate double gzip.
+        RewriteRule "\.gz\.css$" "-" [T=text/css,E=no-gzip:1]
+        RewriteRule "\.gz\.js$"  "-" [T=text/javascript,E=no-gzip:1]
+
+        <FilesMatch "(\.gz\.js|\.gz\.css)$">
+          # Serve correct encoding type.
+          Header append Content-Encoding gzip
+
+          # Force proxies to cache gzipped &
+          # non-gzipped css/js files separately.
+          Header append Vary Accept-Encoding
+        </FilesMatch>
+    </IfModule>
